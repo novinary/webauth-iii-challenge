@@ -1,4 +1,13 @@
 {
+  "name": "webauth-iii-challenge",
+  "version": "1.0.0",
+  "description": "Authentication Challenge",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "author": "Novina Pun",
   "dependencies": {
     "express": "^4.16.4",
     "helmet": "^3.16.0",

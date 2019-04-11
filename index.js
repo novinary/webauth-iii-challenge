@@ -3,8 +3,11 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const Users = require('./users-model');
 const protected = require('./middleware');
+const cors = require('cors');
 
 const secret = 'Whats up';
+
+server.use(cors());
 
 function generateToken(user) {
 	const payload = {
@@ -56,7 +59,7 @@ server.post('/api/login', (req, res) => {
 			res.status(500).json(error);
 		});
 });
-
+/* will work on this later
 function checkRole(){
 return function(req, res, next){
 if(req.decodedToken.roles.includes(role)) {
@@ -66,9 +69,10 @@ if(req.decodedToken.roles.includes(role)) {
 }
 	}
 }
+*/
 
 // [GET] /api/users - protect this endpoint so only logged in users can see it 
-server.get('/api/users', protected, checkRole('admin'), (req, res) => {
+server.get('/api/users', protected, (req, res) => {
 	Users.find('users')
 		.select('id', 'username', 'department')
 		.then((users) => {

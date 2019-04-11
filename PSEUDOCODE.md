@@ -1,3 +1,4 @@
+## Day 1 
 ## Step 1
 Project setup
 - Install dependencies - done
@@ -25,3 +26,8 @@ Build the API with the following endpoints:
 - POST for registering a user. - done
 - POST to authenticate a user login - done
 - GET for If the user is logged in, respond with an array of all the users contained in the database. If the user is not logged in respond with the correct status code and the message: 'You shall not pass!'. Use this endpoint to verify that the password is hashed before it is saved. - done
+
+
+## Day 2
+## implement a React client:
+- use create-react-app client to generate a application to server as the client for the Web API.

@@ -9,7 +9,8 @@ const secret = 'Whats up';
 function generateToken(user) {
 	const payload = {
 		userid: user.id,
-		username: user.username
+		username: user.username,
+		roles: ['admin', 'sales']
 	};
 	const options = {
 		expiresIn: '1d'
@@ -56,11 +57,20 @@ server.post('/api/login', (req, res) => {
 		});
 });
 
+function checkRole(){
+return function(req, res, next){
+if(req.decodedToken.roles.includes(role)) {
+	next();
+} else {
+	res.status(403).json({ message: `You need to be an ${role}`})
+}
+	}
+}
 
 // [GET] /api/users - protect this endpoint so only logged in users can see it 
-server.get('/api/users', protected, (req, res) => {
+server.get('/api/users', protected, checkRole('admin'), (req, res) => {
 	Users.find('users')
-		.select('id', 'username')
+		.select('id', 'username', 'department')
 		.then((users) => {
 			res.status(200).json({ users, decodedToken: req.decodedToken });
 		})

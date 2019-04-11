@@ -30,4 +30,4 @@ Build the API with the following endpoints:
 
 ## Day 2
 ## implement a React client:
-- use create-react-app client to generate a application to server as the client for the Web API.
+- use create-react-app client to generate a application to server as the client for the Web API. - done

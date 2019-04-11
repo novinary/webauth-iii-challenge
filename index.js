@@ -8,7 +8,7 @@ const secret = 'Whats up';
 
 function generateToken(user) {
 	const payload = {
-		subject: user.id,
+		userid: user.id,
 		username: user.username
 	};
 	const options = {
@@ -57,12 +57,12 @@ server.post('/api/login', (req, res) => {
 });
 
 
-// [GET] /api/users
+// [GET] /api/users - protect this endpoint so only logged in users can see it 
 server.get('/api/users', protected, (req, res) => {
 	Users.find('users')
 		.select('id', 'username')
 		.then((users) => {
-			res.json(users);
+			res.status(200).json({ users, decodedToken: req.decodedToken });
 		})
 		.catch((err) => {
 			res.send(err);
